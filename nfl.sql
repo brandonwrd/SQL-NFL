@@ -5,21 +5,26 @@ select name from teams;
 select stadium, head_coach from teams where conference = 'NFC';
 
 -- 3. List the head coaches of the AFC South
-select head_coach from teams where conference = 'AFC'; and division = 'South';
+select head_coach from teams where conference = 'AFC' and division = 'South';
 
 -- 4. The total number of players in the NFL
-select * from players;
+select count(players) from players;
 
 -- "COMMIT: NFL - queried some NFL stuff"
 
 
 -- 5. The team names and head coaches of the NFC North and AFC East
+select name, head_coach from teams where conference = 'NFC' and division = 'North';
+select name, head_coach from teams where conference = 'AFC' and division = 'East';
 
--- 6. The 50 players with the highest salaries
+-- 6. The 50 players with the highest salaries https://www.w3schools.com/sql/sql_orderby.asp, https://www.w3schools.com/sql/sql_top.asp
+select * from players order by salary desc limit 50;
 
 -- 7. The average salary of all NFL players
+select avg(salary) from players;
 
 -- 8. The names and positions of players with a salary above 10_000_000
+select name, position from players where salary > 10000000;
 
 -- "COMMIT: NFL - wow there's a lot of nfl data"
 
