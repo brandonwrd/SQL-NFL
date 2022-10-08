@@ -17,6 +17,10 @@ select count(players) from players;
 select name, head_coach from teams where conference = 'NFC' and division = 'North';
 select name, head_coach from teams where conference = 'AFC' and division = 'East';
 
+select name, head_coach from teams
+where conference = 'NFC' and division = 'North'
+or conference = 'AFC' and division = 'East';
+
 -- 6. The 50 players with the highest salaries https://www.w3schools.com/sql/sql_orderby.asp, https://www.w3schools.com/sql/sql_top.asp
 select * from players order by salary desc limit 50;
 
@@ -31,13 +35,25 @@ select name, position from players where salary > 10000000;
 -- HUNGRY FOR MORE!!!!!!!
 
 -- 9. The player with the highest salary in the NFL
+select * from players order by salary desc limit 1;
 
 -- 10. The name and position of the first 100 players with the lowest salaries
+select name, position from players order by salary asc limit 100;
 
 -- 11. The average salary for a DE in the nfl
+select avg(salary) from players where position = 'DE';
 
 -- 12. The names of all the players on the Buffalo Bills
+select * from players where team_id = 1;
+
+select * from players where team_id = (select id from teams
+where name = 'Buffalo Bills');
+
+select players.name join teams on players.team_id = teams.id where teams.name = 'Buffalo Bills';
+
                                                                                                                       
 -- 13. The total salary of all players on the New York Giants
-                                                                                                                      
+select salary from players where team_id (select id from teams where name = 'New York Giants');  
+
 -- 14. The player with the lowest salary on the Green Bay Packers
+-- select name from players where team_id = select id from teams where name 
